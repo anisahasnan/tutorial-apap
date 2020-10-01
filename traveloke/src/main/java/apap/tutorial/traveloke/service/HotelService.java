@@ -7,6 +7,9 @@ public interface HotelService {
     // Method menambah hotel
     void addHotel(HotelModel hotel);
 
+    // Method menambah hotel
+    void deleteHotel(String idHotel);
+
     // Method mendapatkan daftar hotel yang tersimpan
     List<HotelModel> getHotelList();
 

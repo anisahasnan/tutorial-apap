@@ -21,6 +21,15 @@ public class HotelInMemoryService implements HotelService{
         listHotel.add(hotel);
     }
 
+    public void deleteHotel(String idHotel){
+        for(HotelModel hotel : listHotel) {
+            if (hotel.getIdHotel().equals(idHotel)) {
+                listHotel.remove(hotel);
+                return ;
+            }
+        }
+    }
+
     @Override
     public List<HotelModel> getHotelList(){
         return listHotel;
