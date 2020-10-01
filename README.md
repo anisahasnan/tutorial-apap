@@ -54,17 +54,17 @@
 
 ## Tutorial 2
 
-1. **Cobalah untuk menambahkan sebuah Hotel dengan mengakses link berikut: (http://localhost:8080/hotel/add?idHotel=1&namaHotel=Papa%20APAP&alamat=Quanta%20Fasilkom&noTelepon=081xxx) Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi**
+1. **Cobalah untuk menambahkan sebuah Hotel dengan mengakses link berikut: http://localhost:8080/hotel/add?idHotel=1&namaHotel=Papa%20APAP&alamat=Quanta%20Fasilkom&noTelepon=081xxx Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi**
 Muncul halaman Whitelabel Error Page. Hal ini dikarenakan view/file html yang sudah dicantumkan pada Controller "add-hotel" belum dibuat.
 
 2. **Menurut kamu anotasi @Autowired pada class Controller tersebut merupakan implementasi dari konsep apa? Dan jelaskan secara singkat cara kerja @Autowired tersebut dalam konteks service dan controller yang telah kamu buat**
 Menurut saya, anotasi `@Autowired` pada class Controller merupakan implementasi dari Inversion of Control (IoC). Anotasi `@Autowired` ini memungkinkan Spring untuk me-*resolve* dan meng-*inject beans* yang berhubungan dengan *bean* lain. Anotasi `@Autowired` sebelum properties `hotelService`. Maka, selama *startup process* Spring Container akan mencari class yang meng-*implement interface* `HotelService` dan menginject class tersebut, dalam hal ini class `HotelInMemoryService`, ke `HotelController`. Hal inilah yang memungkinkan class `HotelController` dapat menggunakan method-method yang ada pada class `HotelInMemoryService`.
 
-3. **Cobalah untuk menambahkan sebuah Hotel dengan mengakses link berikut: (http://localhost:8080/hotel/add?idHotel=1&namaHotel=Papa%20APAP&alamat=Quanta%20Fasilkom) Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi.**
+3. **Cobalah untuk menambahkan sebuah Hotel dengan mengakses link berikut: http://localhost:8080/hotel/add?idHotel=1&namaHotel=Papa%20APAP&alamat=Quanta%20Fasilkom Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi.**
 Muncul halaman Whitelabel Error Page. Hal ini dikarenakan teradpat salah satu request parameter yang belum dipenuhi, yaitu noTelepon. Parameter noTelepon wajib dicantumkan pada URL untuk menambahkan hotel karena value dari label required pada noTelepon adalah true. Jika parameter noTelepon tidak dicantumkan, maka akan muncul Error.
 
 4. **Jika Papa APAP ingin melihat Hotel dengan nama Papa APAP, link apa yang harus diakses?**
-(http://localhost:8080/hotel/view?idHotel=1)
+http://localhost:8080/hotel/view?idHotel=1
 
-5. **Tambahkan 1 contoh Hotel lainnya sesukamu. Lalu cobalah untuk mengakses (http://localhost:8080/hotel/viewall) , apa yang akan ditampilkan? Sertakan juga bukti screenshotmu**
-Saya menambahkan 1 hotel lain melalui link berikut (http://localhost:8080/hotel/add?idHotel=2&namaHotel=Mama%20APAP&alamat=Tarung%20Fasilkom&noTelepon=082xxx) .Setelah mengakses viewall, halaman berisi seluruh hotel yang terdapat di dalam list akan dimunculkan. Semua informasi mengenai hotel pun akan ditampilkan seperti nama hotel, id hotel, alamat, dan no telepon. Berikut screenshoot halaman viewall ![screenshoot](https://ibb.co/kg8HSr8) 
+5. **Tambahkan 1 contoh Hotel lainnya sesukamu. Lalu cobalah untuk mengakses http://localhost:8080/hotel/viewall , apa yang akan ditampilkan? Sertakan juga bukti screenshotmu**
+Saya menambahkan 1 hotel lain melalui link berikut http://localhost:8080/hotel/add?idHotel=2&namaHotel=Mama%20APAP&alamat=Tarung%20Fasilkom&noTelepon=082xxx .Setelah mengakses viewall, halaman berisi seluruh hotel yang terdapat di dalam list akan dimunculkan. Semua informasi mengenai hotel pun akan ditampilkan seperti nama hotel, id hotel, alamat, dan no telepon. Berikut screenshoot halaman viewall ![screenshoot](https://ibb.co/kg8HSr8) 
