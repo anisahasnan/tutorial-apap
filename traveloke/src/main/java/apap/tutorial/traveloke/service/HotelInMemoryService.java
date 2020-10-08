@@ -23,7 +23,7 @@ public class HotelInMemoryService implements HotelService{
 
     public void deleteHotel(String idHotel){
         for(HotelModel hotel : listHotel) {
-            if (hotel.getIdHotel().equals(idHotel)) {
+            if (hotel.getId().equals(idHotel)) {
                 listHotel.remove(hotel);
                 return ;
             }
@@ -36,9 +36,18 @@ public class HotelInMemoryService implements HotelService{
     }
 
     @Override
+    public HotelModel getHotelByIdHotel(Long idHotel) {
+        return null;
+    }
+
+    @Override
+    public HotelModel updateHotel(HotelModel hotel) {
+        return null;
+    }
+
     public HotelModel getHotelByIdHotel(String idHotel){
         for(HotelModel hotel : listHotel){
-            if(hotel.getIdHotel().equals(idHotel)){
+            if(hotel.getId().equals(idHotel)){
                 return hotel;
             }
         }
