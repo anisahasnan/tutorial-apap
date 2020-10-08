@@ -1,0 +1,19 @@
+<!DOCTYPYE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>View Hotel</title>
+</head>
+<body>
+<section>
+    <h2>Daftar Hotel</h2>
+    <div th:each="hotel : ${listHotel}">
+        <h3 th:text="'Id Hotel: '+ ${hotel.id}"></h3>
+        <h3 th:text="'Nama Hotel: '+ ${hotel.namaHotel}"></h3>
+        <h3 th:text="'Alamat Hotel: '+ ${hotel.alamat}"></h3>
+        <h3 th:text="'Nomor Telepon: '+ ${hotel.nomorTelepon}"></h3>
+        <br>
+    </div><br><br>
+</section>
+<a href="/">Kembali</a>
+</body>
+</html>

@@ -36,6 +36,7 @@ public class HotelController{
     public String addHotelSubmit(
             @ModelAttribute HotelModel hotel,
             Model model){
+
         hotelService.addHotel(hotel);
         model.addAttribute("idHotel", hotel.getId());
         return "add-hotel";
@@ -46,8 +47,15 @@ public class HotelController{
             @PathVariable Long idHotel,
             Model model){
         HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
-        model.addAttribute("hotel", hotel);
-        return "form-update-hotel";
+
+        if(hotel != null){
+            model.addAttribute("hotel", hotel);
+            return "form-update-hotel";
+        }
+        else{
+            return "hotel-not-found";
+        }
+
     }
 
     @PostMapping("/hotel/change")
@@ -64,10 +72,44 @@ public class HotelController{
             @RequestParam(value = "idHotel") Long idHotel,
             Model model){
         HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
-        List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(idHotel);
-        model.addAttribute("hotel", hotel);
-        model.addAttribute("listKamar", listKamar);
-        return "view-hotel";
+
+        if(hotel != null){
+            List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(idHotel);
+            model.addAttribute("hotel", hotel);
+            model.addAttribute("listKamar", listKamar);
+            return "view-hotel";
+        }
+        else{
+            return "hotel-not-found";
+        }
     }
 
+    @GetMapping("/hotel/delete/{idHotel}")
+    public String deleteHotel(
+            @PathVariable Long idHotel,
+            Model model){
+        HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
+
+        if(hotel != null){
+            List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(idHotel);
+            if(listKamar.isEmpty()){
+                hotelService.deleteHotel(idHotel);
+                model.addAttribute("hotel", hotel);
+                return "delete-hotel";
+            }
+            else{
+                return "no-room-hotel";
+            }
+        }
+        else{
+            return "hotel-not-found";
+        }
+    }
+
+    @GetMapping("/hotel/viewall")
+    public String viewAllHotel(Model model){
+        List<HotelModel> listHotel = hotelService.getAllHotel();
+        model.addAttribute("listHotel", listHotel);
+        return "view-all-hotel";
+    }
 }

@@ -1,15 +1,42 @@
-<!DOCTYPE html>
+<!DOCTYPYE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title>View Hotel</title>
 </head>
 <body>
+<section>
     <h2>Informasi Hotel</h2>
-    <h3 th:text="'Id Hotel: '+ ${hotel.idHotel}"></h3>
+    <h3 th:text="'Id Hotel: '+ ${hotel.id}"></h3>
     <h3 th:text="'Nama Hotel: '+ ${hotel.namaHotel}"></h3>
     <h3 th:text="'Alamat Hotel: '+ ${hotel.alamat}"></h3>
-    <h3 th:text="'Nomor Telepon: '+ ${hotel.noTelepon}"></h3>
-    <a href="/hotel/viewall">Kembali</a>
+    <h3 th:text="'Nomor Telepon: '+ ${hotel.nomorTelepon}"></h3>
+    <td><a th:href="@{/hotel/change/}+${hotel.id}">Change Data Hotel</a></td>
+    <br>
+    <td><a th:href="@{/hotel/delete/}+${hotel.id}">Delete Hotel</a></td>
+</section>
+<section>
+    <h2>Daftar kamar</h2>
+    <div th:if="${not #lists.isEmpty(listKamar)}">
+    <div th:each="kamar : ${listKamar}">
+        <h3 th:text="'No Kamar: '+ ${kamar.noKamar}"></h3>
+        <h3 th:text="'Nama Kamar: '+ ${kamar.namaKamar}"></h3>
+
+        <h3 th:if="${kamar.tipe == 0}">Tipe : Deluxe</h3>
+        <h3 th:if="${kamar.tipe == 1}">Tipe : Executive</h3>
+        <h3 th:if="${kamar.tipe == 2}">Tipe : President Suite</h3>
+
+        <h3 th:text="'Kapasitas Kamar: '+ ${kamar.kapasitasKamar}"></h3>
+        <td><a th:href="@{/kamar/change/}+${kamar.noKamar}">Change Data Kamar</a></td>
+        <br>
+        <td><a th:href="@{/kamar/delete/}+${kamar.noKamar}">Delete Kamar</a></td>
+    </div><br><br>
+    </div>
+    <div th:if="${ #lists.isEmpty(listKamar)}">
+        <h3>Hotel belum memiliki daftar kamar</h3>
+    </div>
+    <td><a th:href="@{/kamar/add/}+${hotel.id}">Add Kamar</a></td>
+    <br><br>
+    <a href="/">Kembali</a>
+</section>
 </body>
 </html>

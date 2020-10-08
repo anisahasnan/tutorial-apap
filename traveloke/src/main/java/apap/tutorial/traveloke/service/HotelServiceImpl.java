@@ -3,14 +3,17 @@ package apap.tutorial.traveloke.service;
 import apap.tutorial.traveloke.model.HotelModel;
 import apap.tutorial.traveloke.repository.HotelDb;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @Transactional
 public class HotelServiceImpl implements HotelService{
+
     @Autowired
     HotelDb hotelDb;
 
@@ -26,7 +29,12 @@ public class HotelServiceImpl implements HotelService{
 
     @Override
     public HotelModel getHotelByIdHotel(Long idHotel){
-        return hotelDb.findById(idHotel).get();
+        try {
+            return hotelDb.findById(idHotel).get();
+        }
+        catch(NoSuchElementException nullException){
+            return null;
+        }
     }
 
     @Override
@@ -43,5 +51,17 @@ public class HotelServiceImpl implements HotelService{
         catch(NullPointerException nullException){
             return null;
         }
+    }
+
+    @Override
+    public void deleteHotel(Long idHotel){
+        hotelDb.deleteById(idHotel);
+        return ;
+    }
+
+    @Override
+    public List<HotelModel> getAllHotel(){
+        List<HotelModel> listHotel = hotelDb.findAll(Sort.by(Sort.Direction.DESC, "id"));
+        return listHotel;
     }
 }
