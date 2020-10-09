@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @Transactional
@@ -28,7 +29,12 @@ public class KamarServiceImpl implements KamarService{
 
     @Override
     public KamarModel getKamarByNoKamar(Long noKamar){
-        return kamarDb.findById(noKamar).get();
+        try {
+            return kamarDb.findById(noKamar).get();
+        }
+        catch(NoSuchElementException nullException){
+            return null;
+        }
     }
 
     @Override
