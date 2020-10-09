@@ -71,9 +71,9 @@ public class HotelController{
     public String viewDetailHotel(
             @RequestParam(value = "idHotel") Long idHotel,
             Model model){
-        HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
 
-        if(hotel != null){
+        if(idHotel != null){
+            HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
             List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(idHotel);
             model.addAttribute("hotel", hotel);
             model.addAttribute("listKamar", listKamar);
