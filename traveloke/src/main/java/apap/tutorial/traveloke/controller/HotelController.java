@@ -63,8 +63,18 @@ public class HotelController{
             @ModelAttribute HotelModel hotel,
             Model model){
         HotelModel hotelUpdated = hotelService.updateHotel(hotel);
-        model.addAttribute("hotel", hotel);
-        return "update-hotel";
+        if(hotel != null){
+            model.addAttribute("hotel", hotel);
+            return "update-hotel";
+        }
+        else{
+            return "hotel-not-found";
+        }
+    }
+
+    @GetMapping("/hotel/change")
+    public String changeHotelnoId(){
+        return "hotel-not-found";
     }
 
     @GetMapping("/hotel/view")
@@ -74,10 +84,15 @@ public class HotelController{
 
         if(idHotel != null){
             HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
-            List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(idHotel);
-            model.addAttribute("hotel", hotel);
-            model.addAttribute("listKamar", listKamar);
-            return "view-hotel";
+            if (hotel != null) {
+                List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(idHotel);
+                model.addAttribute("hotel", hotel);
+                model.addAttribute("listKamar", listKamar);
+                return "view-hotel";
+            }
+            else{
+                return "hotel-not-found";
+            }
         }
         else{
             return "hotel-not-found";
@@ -104,6 +119,11 @@ public class HotelController{
         else{
             return "hotel-not-found";
         }
+    }
+
+    @GetMapping("/hotel/delete")
+    public String deleteHotelnoId(){
+        return "hotel-not-found";
     }
 
     @GetMapping("/hotel/viewall")
