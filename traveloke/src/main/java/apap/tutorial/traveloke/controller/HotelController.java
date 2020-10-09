@@ -62,8 +62,9 @@ public class HotelController{
     public String changeHotelFormSubmit(
             @ModelAttribute HotelModel hotel,
             Model model){
-        HotelModel hotelUpdated = hotelService.updateHotel(hotel);
+
         if(hotel != null){
+            HotelModel hotelUpdated = hotelService.updateHotel(hotel);
             model.addAttribute("hotel", hotel);
             return "update-hotel";
         }

@@ -25,19 +25,33 @@ public class KamarController{
             Model model){
         KamarModel kamar = new KamarModel();
         HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
-        kamar.setHotel(hotel);
-        model.addAttribute("kamar", kamar);
-
-        return "form-add-kamar";
+        if(hotel != null){
+            kamar.setHotel(hotel);
+            model.addAttribute("kamar", kamar);
+            return "form-add-kamar";
+        }
+        else{
+            return "hotel-not-found";
+        }
     }
 
     @PostMapping("/kamar/add")
     private String addKamarSubmit(
             @ModelAttribute KamarModel kamar,
             Model model){
-        kamarService.addKamar(kamar);
-        model.addAttribute("kamar", kamar);
-        return "add-kamar";
+        if(kamar != null){
+            kamarService.addKamar(kamar);
+            model.addAttribute("kamar", kamar);
+            return "add-kamar";
+        }
+        else{
+            return "hotel-not-found";
+        }
+    }
+
+    @GetMapping("/kamar/add")
+    private String addKamarnoIdHotel(){
+        return "hotel-not-found";
     }
 
     @GetMapping("/kamar/change/{noKamar}")
@@ -45,17 +59,33 @@ public class KamarController{
             @PathVariable Long noKamar,
             Model model){
         KamarModel kamar = kamarService.getKamarByNoKamar(noKamar);
-        model.addAttribute("kamar", kamar);
-        return "form-update-kamar";
+        if(kamar != null){
+            model.addAttribute("kamar", kamar);
+            return "form-update-kamar";
+        }
+        else{
+            return "kamar-not-found";
+        }
     }
 
     @PostMapping("/kamar/change")
     public String changeKamarFormSubmit(
             @ModelAttribute KamarModel kamar,
             Model model){
-        KamarModel kamarUpdated = kamarService.updateKamar(kamar);
-        model.addAttribute("kamar", kamar);
-        return "update-kamar";
+
+        if(kamar != null){
+            KamarModel kamarUpdated = kamarService.updateKamar(kamar);
+            model.addAttribute("kamar", kamar);
+            return "update-kamar";
+        }
+        else{
+            return "kamar-not-found";
+        }
+    }
+
+    @GetMapping("/kamar/change")
+    public String changeKamarnoId(){
+        return "kamar-not-found";
     }
 
     @GetMapping("/kamar/delete/{noKamar}")
@@ -63,8 +93,18 @@ public class KamarController{
             @PathVariable Long noKamar,
             Model model){
         KamarModel kamar = kamarService.getKamarByNoKamar(noKamar);
-        kamarService.deleteKamar(noKamar);
-        model.addAttribute("kamar", kamar);
-        return "delete-kamar";
+        if(kamar != null){
+            kamarService.deleteKamar(noKamar);
+            model.addAttribute("kamar", kamar);
+            return "delete-kamar";
+        }
+        else{
+            return "kamar-not-found";
+        }
+    }
+
+    @GetMapping("/kamar/delete")
+    public String deleteKamarnoId(){
+        return "kamar-not-found";
     }
 }
