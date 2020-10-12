@@ -58,4 +58,16 @@ public class KamarServiceImpl implements KamarService{
         kamarDb.deleteById(noKamar);
         return ;
     }
+
+    @Override
+    public KamarModel getKamarByNamaKamarDanKapasitas(String nama, Integer kapasitas){
+        KamarModel targetKamar = kamarDb.findByNamaKamarAndKapasitasKamar(nama, kapasitas);
+
+        try{
+            return targetKamar;
+        }
+        catch(NullPointerException nullException){
+            return null;
+        }
+    }
 }

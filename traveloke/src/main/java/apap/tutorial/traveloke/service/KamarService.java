@@ -15,4 +15,6 @@ public interface KamarService {
     List<KamarModel> findAllKamarByIdHotel(Long idHotel);
 
     void deleteKamar(Long noKamar);
+
+    KamarModel getKamarByNamaKamarDanKapasitas(String nama, Integer kapasitas);
 }
