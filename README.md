@@ -68,3 +68,40 @@ http://localhost:8080/hotel/view?idHotel=1
 
 5. **Tambahkan 1 contoh Hotel lainnya sesukamu. Lalu cobalah untuk mengakses http://localhost:8080/hotel/viewall , apa yang akan ditampilkan? Sertakan juga bukti screenshotmu**
 Saya menambahkan 1 hotel lain melalui link berikut http://localhost:8080/hotel/add?idHotel=2&namaHotel=Mama%20APAP&alamat=Tarung%20Fasilkom&noTelepon=082xxx .Setelah mengakses viewall, halaman berisi seluruh hotel yang terdapat di dalam list akan dimunculkan. Semua informasi mengenai hotel pun akan ditampilkan seperti nama hotel, id hotel, alamat, dan no telepon. Berikut screenshoot halaman viewall dapat dibuka di link https://ibb.co/kg8HSr8
+
+##Tutorial 3
+
+1. Pada class KamarDb, terdapat method findByHotelId, apakah kegunaan dari method tersebut?
+Method findByHotelId merupakan sebuah query method untuk KamarDb. Query method ini  dibuat menggunakan API kriteria JPA. Kode berikut,
+`List<KamarModel> findByHotelId(Long hotelId);` dapat diterjemahkan dalam bentuk SQL statement menjadi `select k from KamarModel k where k.hotelId = ?1`. Kegunaan dari method findByHotelId adalah mengambil semua kamar yang memiliki hotelId sesuai dengan parameter kemudian memasukkannya ke dalam List.
+2. Pada class HotelController, jelaskan perbedaan method addHotelFormPage dan addHotelSubmit?
+Method addHotelFormPage digunakan untuk membuat HotelModel dan me-render form add hotel untuk memasukkan informasi-informasi yang dibutuhkan dalam membuat HotelModel seperti Nama Hotel, Alamat Hotel, dan Nomor Telepon Hotel.
+Method addHotelSubmit digunakan untuk menyimpan HotelModel yang sudah dibuat dan diisi informasinya menggunakan form pada method addHotelFormPage ke dalam database. Method addHotelSubmit juga digunakan untuk meng-generate id untuk HotelModel tersebut. 
+3. Jelaskan kegunaan dari JPA Repository!
+JPA adalah cara untuk mempertahankan Java Object ke dalam database relasional. JPA dapat melakukan mapping Class ke database relasional serta API EntityManager untuk mengakses object, mendefinisikan dan mengeksekusi query seperti menyimpan, mengupdate, mendelete, dan mengambil data dari database relasional ke Java Object, serta masih banyak lagi. JPA mengizinkan developer untuk bekerja langsung dengan Object dibandingkan dengan SQL statement. Beberapa method yang terdapat pada JPA Repository antara lain,
+- deleteAllInBatch() untuk menghapus semua entity pada batch call
+- findAll() untuk mendapat semua isi repository
+- findAllById(Iterable<ID> ids) untuk mendapat semua isi repository yang berkaitan dengan id
+- flush() untuk memflush semua perubahan yang tertunda ke database
+- getOne(ID id) untuk mendapatkan sebuah entity dengan id tersebut
+4. Sebutkan dan jelaskan di bagian kode mana sebuah relasi antara HotelModel dan KamarModel dibuat?
+Pada class KamarModel, di bagian kode berikut
+`@ManyToOne(fetch = FetchType.EAGER, optional = false)
+ @JoinColumn(name = "hotelId", referencedColumnName = "id", nullable = false)
+ @OnDelete(action = OnDeleteAction.CASCADE)
+ @JsonIgnore
+ private HotelModel hotel;`
+ Pada bagian ini, diinisiasi sebuah relasi antara KamarModel dan HotelModel yang memiliki relasi ManyToOne, artinya Banyak KamarModel terhubung dengan Satu HotelModel. Attribute pada HotelModel yang menjadi reference key pada KamarModel adalah "id" yang dinamai "hotelId" pada KamarModel dan tidak boleh bernilai null.
+5. Jelaskan kegunaan FetchType.LAZY, CascadeType.ALL, dan FetchType.EAGER!
+- FetchType.EAGER berfungsi untuk meload sekaligus menyimpan pada memori semua data yang berhubungan dengan class relasi di saat yang sama dengan kita meload data pada class terkait. Tipe fetch ini biasanya digunakan untuk tipe relasi AlltoOne. Seperti pada contoh di class KamarModel di bawah,
+`@ManyToOne(fetch = FetchType.EAGER, optional = false)
+ @JoinColumn(name = "hotelId", referencedColumnName = "id", nullable = false)
+ @OnDelete(action = OnDeleteAction.CASCADE)
+ @JsonIgnore
+ private HotelModel hotel;`
+ Ketika kita meload data kamar, data mengenai hotel yang berhubungan dengan kamar teresbut akan ikut terload dan tersimpan ke dalam memory.
+- FetchType.LAZY berfungsi untuk meload data yang berhubungan dengan class relasi hanya jika dibutuhkan atau kita secara eksplisit memanggilnya. Tipe fetch ini biasanya digunakan untuk tipe relasi AlltoMany. Seperti pada contoh di class HotelModel di bawah,
+`@OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+ private List<KamarModel> listKamar;`
+ Ketika kita meload data hotel, data mengenai kamar yang berhubungan dengan hotel tersebut hanya akan terload ketika kita memanggilnya secara eksplisit dengan findAllKamarByIdHotel().
+- CascadeType.ALL berfungsi untuk mem-propagate semua operasi EntityManager seperti `PERSIST, REMOVE, REFRESH, MERGE, DETACH` pada entity terkait. Pada sisi ManyToOne, CascadeType.ALL akan mem-propagate dari Parent entity sampai Child entity.
