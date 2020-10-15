@@ -1,9 +1,15 @@
 <!DOCTYPYE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <title>View Hotel</title>
+    <meta charset="UTF-8">
+    <title> Home </title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
+
+<nav th:replace="fragments/fragment :: navbar"></nav>
 <section>
     <h2>Daftar Hotel</h2>
     <div th:each="hotel : ${listHotel}">
@@ -14,6 +20,5 @@
         <br>
     </div><br><br>
 </section>
-<a href="/">Kembali</a>
 </body>
 </html>

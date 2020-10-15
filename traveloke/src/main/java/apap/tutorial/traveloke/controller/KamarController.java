@@ -88,23 +88,32 @@ public class KamarController{
         return "kamar-not-found";
     }
 
-    @GetMapping("/kamar/delete/{noKamar}")
-    public String deleteKamar(
-            @PathVariable Long noKamar,
-            Model model){
-        KamarModel kamar = kamarService.getKamarByNoKamar(noKamar);
-        if(kamar != null){
-            kamarService.deleteKamar(noKamar);
-            model.addAttribute("kamar", kamar);
-            return "delete-kamar";
-        }
-        else{
-            return "kamar-not-found";
-        }
-    }
+//    @GetMapping("/kamar/delete/{noKamar}")
+//    public String deleteKamar(
+//            @PathVariable Long noKamar,
+//            Model model){
+//        KamarModel kamar = kamarService.getKamarByNoKamar(noKamar);
+//        if(kamar != null){
+//            kamarService.deleteKamar(noKamar);
+//            model.addAttribute("kamar", kamar);
+//            return "delete-kamar";
+//        }
+//        else{
+//            return "kamar-not-found";
+//        }
+//    }
 
-    @GetMapping("/kamar/delete")
-    public String deleteKamarnoId(){
-        return "kamar-not-found";
+    @PostMapping(path="/kamar/delete")
+    public String deleteKamarFormSubmit(
+            @ModelAttribute HotelModel hotel,
+            Model model
+    ){
+        model.addAttribute("kamarCount", hotel.getListKamar().size());
+
+        for(KamarModel kamar : hotel.getListKamar()){
+            kamarService.deleteKamar(kamar);
+        }
+
+        return "delete-kamar";
     }
 }

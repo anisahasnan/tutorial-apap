@@ -2,20 +2,39 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title> Home </title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<h2>Selamat Datang di Traveloke!</h2>
-<h3>Tambah Hotel</h3>
-<td><a th:href="@{/hotel/add}">Tambah Hotel</a></td>
 
-<h3>Cari Hotel Berdasarkan ID</h3>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+    <h2>Selamat Datang di Traveloke!</h2>
 
-<form th:action="@{/hotel/view}" method = "GET">Id Hotel : <br>
-    <input type="text" name="idHotel"/>
-    <button type = "submit">Cari</button>
-</form>
-<br><br>
-<td><a th:href="@{/hotel/viewall/}">View All Hotel</a></td>
+    <a th:href="@{/hotel/view-all}" class="btn btn-primary">View All Hotel</a>
+    <a th:href="@{/hotel/add}" class="btn btn-outline-primary">Tambah Hotel</a>
+    <hr>
+    <div class="row">
+       <div class="col-md-6">
+          <div class="card">
+             <div class="card-header">Cari Hotel Berdasarkan ID Hotel</div>
+                <div class="card-body">
+                   <form th:action="@{/hotel/view}" method="GET">
+                      <div class="form-row">
+                         <div class="col-10">
+                            <input id="idHotel" type="text" name="idHotel" class="form-control" placeholder="ID Hotel">
+                         </div>
+                         <div class="col">
+                            <button class="btn btn-primary btn-block"> Cari </button>
+                         </div>
+                      </div>
+                   </form>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
 </body>
 </html>

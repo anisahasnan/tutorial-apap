@@ -1,11 +1,14 @@
-<!DOCTYPE html>
+<!DOCTYPYE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Error Page</title>
+    <title> Home </title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<h2> Hotel tidak bisa dihapus karena memiliki kamar </h2>
-<a href="/">Kembali</a>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <h2> Hotel tidak bisa dihapus karena memiliki kamar </h2>
 </body>
 </html>

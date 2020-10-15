@@ -87,6 +87,8 @@ public class HotelController{
             HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
             if (hotel != null) {
                 List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(idHotel);
+                boolean hasKamar = listKamar.size() > 0;
+                model.addAttribute("hasKamar", hasKamar);
                 model.addAttribute("hotel", hotel);
                 model.addAttribute("listKamar", listKamar);
                 return "view-hotel";
@@ -108,7 +110,8 @@ public class HotelController{
 
         if(hotel != null){
             List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(idHotel);
-            if(listKamar.isEmpty()){
+            boolean hasRoom = listKamar.size() > 0;
+            if(hasRoom){
                 hotelService.deleteHotel(idHotel);
                 model.addAttribute("hotel", hotel);
                 return "delete-hotel";
@@ -127,7 +130,7 @@ public class HotelController{
         return "hotel-not-found";
     }
 
-    @GetMapping("/hotel/viewall")
+    @GetMapping("/hotel/view-all")
     public String viewAllHotel(Model model){
         List<HotelModel> listHotel = hotelService.getAllHotel();
         model.addAttribute("listHotel", listHotel);

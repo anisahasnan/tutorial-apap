@@ -2,9 +2,14 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Update Data Hotel</title>
+    <title> Home </title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
+
+<nav th:replace="fragments/fragment :: navbar"></nav>
 <h2>Change Data Hotel</h2>
 <form th:action="@{/hotel/change}"th:object="${hotel}" method = "POST">
     <input type="hidden" th:field="*{id}">
