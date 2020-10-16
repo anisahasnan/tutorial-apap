@@ -17,7 +17,7 @@
     </head>
 
     <body>
-        <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav th:fragment="navbar (menu)" class="navbar navbar-expand-lg navbar-light bg-light">
             <a th:text="traveloke" class="navbar-brand font-weight-bold text-primary" href="#"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup" arla-expanded="false" aria-label="Toggle navigation">
@@ -26,6 +26,7 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link active" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                    <div class="nav-item nav-link active" th:text="${menu}" style="position: absolute; right: 8px;"></div>
                 </div>
             </div>
         </nav>

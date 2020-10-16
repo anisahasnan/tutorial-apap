@@ -69,7 +69,7 @@ http://localhost:8080/hotel/view?idHotel=1
 5. **Tambahkan 1 contoh Hotel lainnya sesukamu. Lalu cobalah untuk mengakses http://localhost:8080/hotel/viewall , apa yang akan ditampilkan? Sertakan juga bukti screenshotmu**
 Saya menambahkan 1 hotel lain melalui link berikut http://localhost:8080/hotel/add?idHotel=2&namaHotel=Mama%20APAP&alamat=Tarung%20Fasilkom&noTelepon=082xxx .Setelah mengakses viewall, halaman berisi seluruh hotel yang terdapat di dalam list akan dimunculkan. Semua informasi mengenai hotel pun akan ditampilkan seperti nama hotel, id hotel, alamat, dan no telepon. Berikut screenshoot halaman viewall dapat dibuka di link https://ibb.co/kg8HSr8
 
-##Tutorial 3
+## Tutorial 3
 
 1. Pada class KamarDb, terdapat method findByHotelId, apakah kegunaan dari method tersebut?
 Method findByHotelId merupakan sebuah query method untuk KamarDb. Query method ini  dibuat menggunakan API kriteria JPA. Kode berikut,
@@ -105,3 +105,14 @@ Pada class KamarModel, di bagian kode berikut
  private List<KamarModel> listKamar;`
  Ketika kita meload data hotel, data mengenai kamar yang berhubungan dengan hotel tersebut hanya akan terload ketika kita memanggilnya secara eksplisit dengan findAllKamarByIdHotel().
 - CascadeType.ALL berfungsi untuk mem-propagate semua operasi EntityManager seperti `PERSIST, REMOVE, REFRESH, MERGE, DETACH` pada entity terkait. Pada sisi ManyToOne, CascadeType.ALL akan mem-propagate dari Parent entity sampai Child entity.
+
+## Tutorial 4
+1. Jelaskan perbedaan th:include dan th:replace!
+   Pada th:include, konten fragment akan dimasukkan ke dalam body dari host tag. Sedangkan, pada th:replace, host tag saat ini akan digantikan dengan tag lain yang mendefinisikan fragment.
+2. Jelaskan apa fungsi dari th:object!
+   th:object digunakan untuk menampung object yang akan digunakan oleh data formulir
+3. Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?
+   - $ digunakan untuk memilih object yang dioper dari controller untuk digunakan pada html. 
+   - * digunakan untuk mengambil properties dari object yang sudah didefinisikan terlebih dahulu pada th:objcet
+4. Bagaimana kamu menyelesaikan latihan nomor 3?
+   Pada fragments.html, saya menambahkan argumen "menu" untuk fragment navbar. Argumen "menu" ini akan menampung value berupa judul menu sesuai dengan masukan untuk masing-masing halaman html. Nantinya, value dari argumen "menu" akan diambil untuk diterapkan di dalam fragment navbar itu sendiri.  

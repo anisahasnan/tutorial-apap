@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<nav th:replace="fragments/fragment :: navbar"></nav>
+<nav th:replace="fragments/fragment :: navbar('View Hotel')"></nav>
 <section>
     <h2>Informasi Hotel</h2>
     <h3 th:text="'Id Hotel: '+ ${hotel.id}"></h3>

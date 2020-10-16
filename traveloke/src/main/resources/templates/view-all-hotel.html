@@ -9,16 +9,41 @@
 </head>
 <body>
 
-<nav th:replace="fragments/fragment :: navbar"></nav>
+<nav th:replace="fragments/fragment :: navbar('View All Hotel')"></nav>
 <section>
+    <br>
     <h2>Daftar Hotel</h2>
-    <div th:each="hotel : ${listHotel}">
-        <h3 th:text="'Id Hotel: '+ ${hotel.id}"></h3>
-        <h3 th:text="'Nama Hotel: '+ ${hotel.namaHotel}"></h3>
-        <h3 th:text="'Alamat Hotel: '+ ${hotel.alamat}"></h3>
-        <h3 th:text="'Nomor Telepon: '+ ${hotel.nomorTelepon}"></h3>
-        <br>
-    </div><br><br>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Id Hotel</th>
+            <th>Nama Hotel</th>
+            <th>Alamat Hotel</th>
+            <th>Nomor Telepon</th>
+            <th>Aksi</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="hotel, iterationStatus : ${listHotel}">
+            <td th:text="${iterationStatus.count}"></td>
+            <td th:text="${hotel.id}"></td>
+            <td th:text="${hotel.namaHotel}"></td>
+            <td th:text="${hotel.alamat}"></td>
+            <td th:text="${hotel.nomorTelepon}"></td>
+
+            <td>
+                <a th:href="@{/hotel/view?idHotel=}+${hotel.id}">View Hotel</a>
+                <br>
+                <a th:href="@{/hotel/change/}+${hotel.id}">Change Hotel</a>
+                <br>
+                <a th:href="@{/hotel/delete/}+${hotel.id}">Delete Hotel</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </section>
 </body>
 </html>

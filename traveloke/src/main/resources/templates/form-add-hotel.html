@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<nav th:replace="fragments/fragment :: navbar"></nav>
+<nav th:replace="fragments/fragment :: navbar('Add Hotel')"></nav>
 <h2>Hello</h2>
 <h3>Tambah Hotel</h3>
 <form th:action="@{/hotel/add}"th:object="${hotel}" method = "POST">

@@ -110,8 +110,8 @@ public class HotelController{
 
         if(hotel != null){
             List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(idHotel);
-            boolean hasRoom = listKamar.size() > 0;
-            if(hasRoom){
+            boolean hasKamar = listKamar.size() > 0;
+            if(!hasKamar){
                 hotelService.deleteHotel(idHotel);
                 model.addAttribute("hotel", hotel);
                 return "delete-hotel";

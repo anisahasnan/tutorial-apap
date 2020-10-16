@@ -8,25 +8,122 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
+    <nav th:replace="fragments/fragment :: navbar('Add Kamar')"></nav>
+    <h3>Tambah Kamar</h3>
+    <form th:action="@{/kamar/add}" th:object="${hotel}" method = "POST">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nama</th>
+            <th>Tipe Kamar</th>
+            <th>Kapasitas Kamar</th>
+            <th><button class="btn btn-primary" type="submit" name="addRow"> Tambah </button></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="kamar, iterStat: *{listKamar}">
+                <input type="hidden" th:field="*{id}"/>
+                <td>
+                    <input class="form-control" th:field="*{listKamar[__${iterStat.index}__].namaKamar}" type="text" name="namaKamar"/>
+<!--                    <label th:for="${'nama-'+ listKamar[__${iterStat.index}__]}"></label>-->
+                </td>
+                <td>
+                    <select class="form-control" th:field="*{listKamar[__${iterStat.index}__].tipe}" name="tipe">
+                        <option value="0">Deluxe</option>
+                        <option value="1">Executive</option>
+                        <option value="2">President Suite</option>
+                    </select>
+<!--                    <label th:for="${'tipe-'+ listKamar[__${iterStat.index}__]}"></label>-->
+                </td>
+                <td>
+                    <input class="form-control" th:field="*{listKamar[__${iterStat.index}__].kapasitasKamar}" type="number" name="kapasitasKamar"/>
+<!--                    <label th:for="${'kapasitas-'+ listKamar[__${iterStat.index}__]}"></label>-->
+                </td>
+                <td>
+                    <button class="btn btn-danger" type="submit" name="deleteRow" th:value="${iterStat.index}"> Hapus </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-success" type="submit" name="simpan" style="float: right; margin-right: 10%"> Simpan </button>
+    </form>
 
-<nav th:replace="fragments/fragment :: navbar"></nav>
-<h3>Tambah Kamar</h3>
-<form th:action="@{/kamar/add}" th:object="${kamar}" method = "POST">
-    <input type="hidden" th:field="*{hotel}"/>
-    Nama Kamar : <br>
-    <input type="text" name="namaKamar"/>
-    <br>
-    Tipe Kamar : <br>
-    <select name="tipe">
-        <option value="0">Deluxe</option>
-        <option value="1">Executive</option>
-        <option value="2">President Suite</option>
-    </select>
-    <br>
-    Kapasitas Kamar : <br>
-    <input type="number" name="kapasitasKamar"/>
-    <br>
-    <button type="submit">Submit</button>
-</form>
+
+<!--<form th:action="@{/kamar/add}" th:object="${kamar}" method = "POST">-->
+<!--    <input type="hidden" th:field="*{hotel}"/>-->
+<!--    Nama Kamar : <br>-->
+<!--    <input type="text" name="namaKamar"/>-->
+<!--    <br>-->
+<!--    Tipe Kamar : <br>-->
+<!--    <select name="tipe">-->
+<!--        <option value="0">Deluxe</option>-->
+<!--        <option value="1">Executive</option>-->
+<!--        <option value="2">President Suite</option>-->
+<!--    </select>-->
+<!--    <br>-->
+<!--    Kapasitas Kamar : <br>-->
+<!--    <input type="number" name="kapasitasKamar"/>-->
+<!--    <br>-->
+<!--    <button type="submit">Submit</button>-->
+<!--</form>-->
+
+    <script>
+        // var counter = 1;
+        // $("#add").click(function() {
+        //     $("#addKamarTable").append(
+        //         '<tr id=\"' + counter + '\">' +
+        //         '<td>' +
+        //         '<input type="text" name="namaKamar"/>' +
+        //         '</td>' +
+        //         '<td>' +
+        //         '<select name="tipe">' +
+        //         '<option value="0">Deluxe</option>' +
+        //         '<option value="1">Executive</option>' +
+        //         '<option value="2">President Suite</option>' +
+        //         '</select>' +
+        //         '</td>' +
+        //         '<td>' +
+        //         '<input type="number" name="kapasitasKamar"/>' +
+        //         '</td>' +
+        //         '<td>' +
+        //         '<button type="button" class="btn btn-danger">Delete</button>' +
+        //         '</td>' +
+        //         '</tr>'
+        //     );
+        //     counter++;
+        // });
+        // var counter = 1;
+        // $(function () {
+        //     $('#add').click(function () {
+        //         $('<td>' +
+        //             '<input type="text" name="namaKamar"/>' +
+        //             '</td>' +
+        //             '<td>' +
+        //             '<select name="tipe">' +
+        //             '<option value="0">Deluxe</option>' +
+        //             '<option value="1">Executive</option>' +
+        //             '<option value="2">President Suite</option>' +
+        //             '</select>' +
+        //             '</td>' +
+        //             '<td>' +
+        //             '<input type="number" name="kapasitasKamar"/>' +
+        //             '</td>' +
+        //             '<td>' +
+        //             '<button type="button" class="btn btn-danger">Delete</button>' +
+        //             '</td>' +
+        //             '</tr>').appendTo('#addKamarTable');
+        //         counter++;
+        //         return false;
+        //     });
+        // });
+        // function removeTr(index) {
+        //     if (counter > 1) {
+        //         $('#tablerow' + index).remove();
+        //         counter--;
+        //     }
+        //     return false;
+        // }
+    </script>
 </body>
 </html>

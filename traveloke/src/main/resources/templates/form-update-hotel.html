@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<nav th:replace="fragments/fragment :: navbar"></nav>
+<nav th:replace="fragments/fragment :: navbar('Update Hotel')"></nav>
 <h2>Change Data Hotel</h2>
 <form th:action="@{/hotel/change}"th:object="${hotel}" method = "POST">
     <input type="hidden" th:field="*{id}">

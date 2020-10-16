@@ -8,7 +8,7 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <nav th:replace="fragments/fragment :: navbar('Update Kamar')"></nav>
     <h2>Informasi Kamar</h2>
     <h3 th:text="'Untuk Nomor Kamar: '+ ${kamar.noKamar}"></h3>
     <h2>Berhasil Diubah</h2>
