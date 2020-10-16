@@ -10,17 +10,19 @@
 <body>
 
 <nav th:replace="fragments/fragment :: navbar('View Hotel')"></nav>
-<section>
+<section style="margin-left: 10px; margin-right: 10px">
+    <br>
     <h2>Informasi Hotel</h2>
+    <br>
     <h3 th:text="'Id Hotel: '+ ${hotel.id}"></h3>
     <h3 th:text="'Nama Hotel: '+ ${hotel.namaHotel}"></h3>
     <h3 th:text="'Alamat Hotel: '+ ${hotel.alamat}"></h3>
     <h3 th:text="'Nomor Telepon: '+ ${hotel.nomorTelepon}"></h3>
-    <td><a th:href="@{/hotel/change/}+${hotel.id}">Change Data Hotel</a></td>
-    <br>
-    <td><a th:href="@{/hotel/delete/}+${hotel.id}">Delete Hotel</a></td>
+    <a th:href="@{/hotel/change/}+${hotel.id}">Change Data Hotel</a><br>
+    <a th:href="@{/hotel/delete/}+${hotel.id}">Delete Hotel</a>
 </section>
-<section>
+<br>
+<section style="margin-left: 10px; margin-right: 10px">
     <h2>Daftar kamar</h2>
     <div th:if="${hasKamar}">
         <form th:action="@{/kamar/delete}" th:object="${hotel}" method="POST">
@@ -49,7 +51,7 @@
                         </td>
 
                         <td th:text="${kamar.kapasitasKamar}"></td>
-                        <td><a th:href="@{/kamar/change/}+${kamar.noKamar}">Change Data Kamar</a></td>
+                        <td><a class="btn btn-sm btn-warning"th:href="@{/kamar/change/}+${kamar.noKamar}">Change Data Kamar</a></td>
                         <td>
                             <input type="checkbox" th:field="*{listKamar}" th:value="${kamar.noKamar}"/>
                             <label th:for="${#ids.prev('listKamar')}">Hapus</label>
@@ -64,7 +66,7 @@
     <div th:unless="${hasKamar}">
         <h2 th:text="'Hotel belum memiliki daftar kamar'"></h2>
     </div>
-    <td><a th:href="@{/kamar/add/}+${hotel.id}">Add Kamar</a></td>
+    <td><a class="btn btn-sm btn-primary" th:href="@{/kamar/add/}+${hotel.id}">Add Kamar</a></td>
 </section>
 </body>
 </html>

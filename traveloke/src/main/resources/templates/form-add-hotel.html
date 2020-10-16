@@ -7,7 +7,7 @@
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
-<body>
+<body style="margin-left: 10px; margin-right: 10px">
 
 <nav th:replace="fragments/fragment :: navbar('Add Hotel')"></nav>
 <h2>Hello</h2>
@@ -22,7 +22,7 @@
     Nomor Telepon : <br>
     <input type="text" name="nomorTelepon"/>
     <br><br>
-    <button type="submit">Submit</button>
+    <button class="btn btn-success" type="submit">Submit</button>
 </form>
 </body>
 </html>

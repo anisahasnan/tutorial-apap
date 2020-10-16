@@ -71,20 +71,20 @@ Saya menambahkan 1 hotel lain melalui link berikut http://localhost:8080/hotel/a
 
 ## Tutorial 3
 
-1. Pada class KamarDb, terdapat method findByHotelId, apakah kegunaan dari method tersebut?
+1. **Pada class KamarDb, terdapat method findByHotelId, apakah kegunaan dari method tersebut?**
 Method findByHotelId merupakan sebuah query method untuk KamarDb. Query method ini  dibuat menggunakan API kriteria JPA. Kode berikut,
 `List<KamarModel> findByHotelId(Long hotelId);` dapat diterjemahkan dalam bentuk SQL statement menjadi `select k from KamarModel k where k.hotelId = ?1`. Kegunaan dari method findByHotelId adalah mengambil semua kamar yang memiliki hotelId sesuai dengan parameter kemudian memasukkannya ke dalam List.
-2. Pada class HotelController, jelaskan perbedaan method addHotelFormPage dan addHotelSubmit?
+2. **Pada class HotelController, jelaskan perbedaan method addHotelFormPage dan addHotelSubmit?**
 Method addHotelFormPage digunakan untuk membuat HotelModel dan me-render form add hotel untuk memasukkan informasi-informasi yang dibutuhkan dalam membuat HotelModel seperti Nama Hotel, Alamat Hotel, dan Nomor Telepon Hotel.
 Method addHotelSubmit digunakan untuk menyimpan HotelModel yang sudah dibuat dan diisi informasinya menggunakan form pada method addHotelFormPage ke dalam database. Method addHotelSubmit juga digunakan untuk meng-generate id untuk HotelModel tersebut. 
-3. Jelaskan kegunaan dari JPA Repository!
+3. **Jelaskan kegunaan dari JPA Repository!**
 JPA adalah cara untuk mempertahankan Java Object ke dalam database relasional. JPA dapat melakukan mapping Class ke database relasional serta API EntityManager untuk mengakses object, mendefinisikan dan mengeksekusi query seperti menyimpan, mengupdate, mendelete, dan mengambil data dari database relasional ke Java Object, serta masih banyak lagi. JPA mengizinkan developer untuk bekerja langsung dengan Object dibandingkan dengan SQL statement. Beberapa method yang terdapat pada JPA Repository antara lain,
 - deleteAllInBatch() untuk menghapus semua entity pada batch call
 - findAll() untuk mendapat semua isi repository
 - findAllById(Iterable<ID> ids) untuk mendapat semua isi repository yang berkaitan dengan id
 - flush() untuk memflush semua perubahan yang tertunda ke database
 - getOne(ID id) untuk mendapatkan sebuah entity dengan id tersebut
-4. Sebutkan dan jelaskan di bagian kode mana sebuah relasi antara HotelModel dan KamarModel dibuat?
+4. **Sebutkan dan jelaskan di bagian kode mana sebuah relasi antara HotelModel dan KamarModel dibuat?**
 Pada class KamarModel, di bagian kode berikut
 `@ManyToOne(fetch = FetchType.EAGER, optional = false)
  @JoinColumn(name = "hotelId", referencedColumnName = "id", nullable = false)
@@ -92,7 +92,7 @@ Pada class KamarModel, di bagian kode berikut
  @JsonIgnore
  private HotelModel hotel;`
  Pada bagian ini, diinisiasi sebuah relasi antara KamarModel dan HotelModel yang memiliki relasi ManyToOne, artinya Banyak KamarModel terhubung dengan Satu HotelModel. Attribute pada HotelModel yang menjadi reference key pada KamarModel adalah "id" yang dinamai "hotelId" pada KamarModel dan tidak boleh bernilai null.
-5. Jelaskan kegunaan FetchType.LAZY, CascadeType.ALL, dan FetchType.EAGER!
+5. **Jelaskan kegunaan FetchType.LAZY, CascadeType.ALL, dan FetchType.EAGER!**
 - FetchType.EAGER berfungsi untuk meload sekaligus menyimpan pada memori semua data yang berhubungan dengan class relasi di saat yang sama dengan kita meload data pada class terkait. Tipe fetch ini biasanya digunakan untuk tipe relasi AlltoOne. Seperti pada contoh di class KamarModel di bawah,
 `@ManyToOne(fetch = FetchType.EAGER, optional = false)
  @JoinColumn(name = "hotelId", referencedColumnName = "id", nullable = false)
@@ -107,12 +107,13 @@ Pada class KamarModel, di bagian kode berikut
 - CascadeType.ALL berfungsi untuk mem-propagate semua operasi EntityManager seperti `PERSIST, REMOVE, REFRESH, MERGE, DETACH` pada entity terkait. Pada sisi ManyToOne, CascadeType.ALL akan mem-propagate dari Parent entity sampai Child entity.
 
 ## Tutorial 4
-1. Jelaskan perbedaan th:include dan th:replace!
+
+1. **Jelaskan perbedaan th:include dan th:replace!**
    Pada `th:include`, konten-konten yang berada di dalam fragment akan dimasukkan ke dalam body dari host tag. Sedangkan, pada `th:replace`, host tag saat ini akan digantikan dengan tag lain yang mendefinisikan fragment.
-2. Jelaskan apa fungsi dari th:object!
+2. **Jelaskan apa fungsi dari th:object!**
    `th:object` digunakan untuk menampung object yang akan digunakan oleh data formulir. ketika form disubmit, value yang diisi pada `th:object` akan dipost menuju controller. 
-3. Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?
+3. **Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?**
    - simbol `$` digunakan untuk memilih object yang dioper dari controller untuk digunakan pada html. simbol `$` dipakai ketika ada object yang dioper oleh controller. 
    - simbol `*` digunakan untuk mengambil properties dari object yang sudah didefinisikan terlebih dahulu pada th:objcet. simbol `*` digunakan ketika sudah ada object yang didefinisikan pada th:objcet.
-4. Bagaimana kamu menyelesaikan latihan nomor 3?
+4. **Bagaimana kamu menyelesaikan latihan nomor 3?**
    Untuk menyelesaikan latihan nomor 3, saya menggunakan konsep parameter inclusion. Pada fragments.html, saya menambahkan argumen "menu" untuk fragment navbar. Argumen "menu" ini akan menampung value berupa judul menu sesuai dengan masukan untuk masing-masing halaman html. Contohnya, pada home.html, fragment navbar('Home') akan mereplace tag yang memanggilnya. Pada kasus ini, judul menu yang di-pass ke parameter adalah 'Home'. Nantinya, value dari argumen "menu" akan diambil untuk diterapkan di dalam fragment navbar itu sendiri.  

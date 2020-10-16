@@ -10,11 +10,11 @@
 <body>
 
 <nav th:replace="fragments/fragment :: navbar('View All Hotel')"></nav>
-<section>
+<section style="margin-left: 10px; margin-right: 10px">
     <br>
     <h2>Daftar Hotel</h2>
     <br>
-    <table class="table">
+    <table class="table center" style="margin-left: auto; margin-right: auto;">
         <thead>
         <tr>
             <th>No</th>
@@ -35,11 +35,11 @@
             <td th:text="${hotel.nomorTelepon}"></td>
 
             <td>
-                <a th:href="@{/hotel/view?idHotel=}+${hotel.id}">View Hotel</a>
+                <a class="btn btn-sm btn-primary" style="margin-bottom: 5px" th:href="@{/hotel/view?idHotel=}+${hotel.id}">View Hotel</a>
                 <br>
-                <a th:href="@{/hotel/change/}+${hotel.id}">Change Hotel</a>
+                <a class="btn btn-sm btn-warning" style="margin-bottom: 5px" th:href="@{/hotel/change/}+${hotel.id}">Change Hotel</a>
                 <br>
-                <a th:href="@{/hotel/delete/}+${hotel.id}">Delete Hotel</a>
+                <a class="btn btn-sm btn-danger" th:href="@{/hotel/delete/}+${hotel.id}">Delete Hotel</a>
             </td>
         </tr>
         </tbody>
