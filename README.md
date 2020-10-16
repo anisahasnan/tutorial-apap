@@ -108,11 +108,11 @@ Pada class KamarModel, di bagian kode berikut
 
 ## Tutorial 4
 1. Jelaskan perbedaan th:include dan th:replace!
-   Pada th:include, konten fragment akan dimasukkan ke dalam body dari host tag. Sedangkan, pada th:replace, host tag saat ini akan digantikan dengan tag lain yang mendefinisikan fragment.
+   Pada `th:include`, konten-konten yang berada di dalam fragment akan dimasukkan ke dalam body dari host tag. Sedangkan, pada `th:replace`, host tag saat ini akan digantikan dengan tag lain yang mendefinisikan fragment.
 2. Jelaskan apa fungsi dari th:object!
-   th:object digunakan untuk menampung object yang akan digunakan oleh data formulir
+   `th:object` digunakan untuk menampung object yang akan digunakan oleh data formulir. ketika form disubmit, value yang diisi pada `th:object` akan dipost menuju controller. 
 3. Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?
-   - $ digunakan untuk memilih object yang dioper dari controller untuk digunakan pada html. 
-   - * digunakan untuk mengambil properties dari object yang sudah didefinisikan terlebih dahulu pada th:objcet
+   - simbol `$` digunakan untuk memilih object yang dioper dari controller untuk digunakan pada html. simbol `$` dipakai ketika ada object yang dioper oleh controller. 
+   - simbol `*` digunakan untuk mengambil properties dari object yang sudah didefinisikan terlebih dahulu pada th:objcet. simbol `*` digunakan ketika sudah ada object yang didefinisikan pada th:objcet.
 4. Bagaimana kamu menyelesaikan latihan nomor 3?
-   Pada fragments.html, saya menambahkan argumen "menu" untuk fragment navbar. Argumen "menu" ini akan menampung value berupa judul menu sesuai dengan masukan untuk masing-masing halaman html. Nantinya, value dari argumen "menu" akan diambil untuk diterapkan di dalam fragment navbar itu sendiri.  
+   Untuk menyelesaikan latihan nomor 3, saya menggunakan konsep parameter inclusion. Pada fragments.html, saya menambahkan argumen "menu" untuk fragment navbar. Argumen "menu" ini akan menampung value berupa judul menu sesuai dengan masukan untuk masing-masing halaman html. Contohnya, pada home.html, fragment navbar('Home') akan mereplace tag yang memanggilnya. Pada kasus ini, judul menu yang di-pass ke parameter adalah 'Home'. Nantinya, value dari argumen "menu" akan diambil untuk diterapkan di dalam fragment navbar itu sendiri.  
