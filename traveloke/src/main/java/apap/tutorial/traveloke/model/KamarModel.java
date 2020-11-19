@@ -1,6 +1,7 @@
 package apap.tutorial.traveloke.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "kamar")
+@JsonIgnoreProperties(value={"hotel"},allowSetters = true)
 public class KamarModel implements Serializable {
 
     @Id
@@ -32,7 +34,6 @@ public class KamarModel implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "hotelId", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private HotelModel hotel;
 
     public Long getNoKamar() {
