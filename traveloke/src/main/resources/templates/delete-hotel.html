@@ -1,13 +1,16 @@
-<!DOCTYPE html>
+<!DOCTYPYE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Delete Hotel Sukses</title>
+    <title> Home </title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<h2>Hotel</h2>
-<h3 th:text="'dengan Id Hotel: '+ ${hotel.id}"></h3>
-<h2>Berhasil Dihapus</h2>
-<a href="/">Kembali</a>
+    <nav th:replace="fragments/fragment :: navbar('Delete Hotel')"></nav>
+    <h2 style="text-align: center; margin-top: 30px">Hotel</h2>
+    <h3 style="text-align: center;" th:text="'dengan Id Hotel: '+ ${hotel.id}"></h3>
+    <h2 style="text-align: center;">Berhasil Dihapus</h2>
 </body>
 </html>

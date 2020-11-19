@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <title>500 Internal Server Error</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+    <nav th:replace="fragments/fragment :: navbar('Error 500')"></nav>
+    <h1 style="text-align: center; margin-top: 30px"><b>500</b></h1>
+    <h2 style="text-align: center;">Halaman tidak ditemukan</h2>
+    <h2 style="text-align: center;">(Internal Server Error)</h2>
+</body>
+</html>
