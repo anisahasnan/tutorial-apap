@@ -53,7 +53,7 @@ public class KamarRestController {
             return ResponseEntity.ok("Kamar has been deleted");
         } catch (NoSuchElementException e) {
             throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Hotel with ID" + String.valueOf(kamarId) + " Not Found!");
+                    HttpStatus.NOT_FOUND, "Kamar with ID" + String.valueOf(kamarId) + " Not Found!");
         }
     }
 
@@ -67,7 +67,7 @@ public class KamarRestController {
             return ResponseEntity.ok("Update kamar success!");
         } catch (NoSuchElementException e) {
             throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Hotel with ID" + String.valueOf(kamarId) + " Not Found!");
+                    HttpStatus.NOT_FOUND, "Kamar with ID" + String.valueOf(kamarId) + " Not Found!");
         }
     }
 
