@@ -117,3 +117,18 @@ Pada class KamarModel, di bagian kode berikut
    - simbol `*` digunakan untuk mengambil properties dari object yang sudah didefinisikan terlebih dahulu pada th:objcet. simbol `*` digunakan ketika sudah ada object yang didefinisikan pada th:objcet.
 4. **Bagaimana kamu menyelesaikan latihan nomor 3?**
    Untuk menyelesaikan latihan nomor 3, saya menggunakan konsep parameter inclusion. Pada fragments.html, saya menambahkan argumen "menu" untuk fragment navbar. Argumen "menu" ini akan menampung value berupa judul menu sesuai dengan masukan untuk masing-masing halaman html. Contohnya, pada home.html, fragment navbar('Home') akan mereplace tag yang memanggilnya. Pada kasus ini, judul menu yang di-pass ke parameter adalah 'Home'. Nantinya, value dari argumen "menu" akan diambil untuk diterapkan di dalam fragment navbar itu sendiri.  
+
+## Tutorial 5
+1. **Apa itu Postman? Apa kegunaannya?**
+   Postman merupakan alat untuk pengembangan API berupa GUI API caller yang membantu membangun, menguji, dan memodifikasi API. Postman dapat digunakan untuk membuat berbagai jenis permintaan HTTP seperti GET, POST, PUT, dan DELETE, menyimpan environments untuk digunakan nanti, serta mengubah API menjadi kode untuk berbagai bahasa (seperti JavaScript, Python)
+
+2. **Jelaskan fungsi dari anotasi `@JsonIgnoreProperties` dan `@JsonProperty.`**
+   - `@JsonIgnoreProperties` digunakan untuk mengabaikan properti logika yang sudah dispesifikasi atau spesifik dalam serialisasi dan deserialisasi JSON. `@JsonIgnoreProperties` dianotasi di tingkat class
+   - `@JsonIgnore` digunakan untuk mengabaikan properti logis yang digunakan dalam serialisasi dan deserialisasi. `@JsonIgnore` bisa digunakan di setter, getter, atau field
+
+3. **Apa kegunaan atribut WebClient?**
+   WebClient menyediakan metode umum untuk mengirim data ke atau menerima data dari resource lokal, intranet, atau Internet yang diidentifikasi oleh URI. WebClient menggunakan kelas WebRequest untuk menyediakan akses ke resource
+   
+4. **Apa itu `ResponseEntity` dan `BindingResult`? Apa kegunaannya?**
+   - `ResponseEntity` mewakili respons HTTP, termasuk header, body, dan status.  `ResponseEntity` dapat digunakan untuk mengonfigurasi respons HTTP sepenuhnya
+   - `BindingResult` adalah objek yang menyimpan hasil validasi,  binding, serta error yang mungkin telah terjadi. `BindingResult` harus muncul tepat setelah objek model yang divalidasi. `BindingResult` digunakan untuk melihat hasil validasi
