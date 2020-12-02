@@ -42,7 +42,10 @@ public class UserController {
 
         String pesan;
         if(userService.validateOldPassword(user, oldPass)){
-            if(confirmPass.equals(newPass)){
+            if(newPass.equals(oldPass)){
+                pesan = "Password baru tidak boleh sama dengan password lama!";
+            }
+            else if(confirmPass.equals(newPass)){
                 userService.updatePassword(user, newPass);
                 pesan = "Password berhasil diupdate!";
             }
