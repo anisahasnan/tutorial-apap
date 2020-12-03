@@ -132,3 +132,18 @@ Pada class KamarModel, di bagian kode berikut
 4. **Apa itu `ResponseEntity` dan `BindingResult`? Apa kegunaannya?**
    - `ResponseEntity` mewakili respons HTTP, termasuk header, body, dan status.  `ResponseEntity` dapat digunakan untuk mengonfigurasi respons HTTP sepenuhnya
    - `BindingResult` adalah objek yang menyimpan hasil validasi,  binding, serta error yang mungkin telah terjadi. `BindingResult` harus muncul tepat setelah objek model yang divalidasi. `BindingResult` digunakan untuk melihat hasil validasi
+
+## Tutorial 6
+1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?
+   - Otentikasi adalah proses verifikasi atau pembuktian identitas seseorang. Otentikasi biasa dilakukan menggunakan username dan password. Sistem nantinya akan mengotentikasi apakah username dan password sudah sesuai. Otentikasi diterapkan pada class `WebSecurityConfig` tepatnya pada fungsi `configAuthentication` dimana sistem akan memvalidasi username dan password yang dimasukkan oleh pengguna sudah sesuai dengan yang tersimpan di database atau belum.
+   - Otorisasi adalah proses yang terjadi setelah pengguna terautentikasi. Otorisasi akan memberikan akses kepada pengguna sesuai dengan peran yang dimiliki untuk menelusuri sistem. Otorisasi diterapkan pada class `WebSecurityConfig`, tepatnya pada fungsi `configure`. Pada fungsi configure, dituliskan kode `.antMatchers("/hotel/**").hasAuthority("RECEPTIONIST")` yang berarti hanya pengguna dengan role "Receptionist" yang dapat mengakses url tersebut. 
+
+2. Apa itu BCryptPasswordEncoder? Jelaskan secara singkat cara kerja dan tujuannya.
+   BCryptPasswordEncoder adalah sebuah kelas yang mengimplementasikan `PasswordEncoder` dan berfungsi untuk melakukan *password encode atau hashing*. BCrypt akan mengubah password menjadi *random salt* atau *random string*. Setiap pemanggilan fungsi `encode`, hasil *random salt* yang di-generate akan berbeda-beda namun tetap sesuai dengan format hasil *random salt*.
+
+3. Jelaskan secara singkat apa itu UUID beserta penggunaannya!
+   UUID atau Universally Unique Identifier adalah salah satu identifier yang sering digunakan. Bentuk dari UUID merupakan angka dengan panjang 128 bit. UUID ini digunakan untuk mengidentifikasi objek secara unik di internet.
+
+4. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserServiceImpl.java?
+   `UserDetailsServiceImpl.java` merupakan core interface pada security framework service dan hanya memiliki satu method yaitu `loadUserByUserName`. Class `UserDetailsServiceImpl` ini digunakan untuk mengambil informasi mengenai otentikasi dan otorisasi milik pengguna. Sedangkan, class `UserServiceImpl` berisi method atau service yang dapat digunakan oleh model user dan tidak berkaitan dengan otorisasi atau otentikasi.
+
