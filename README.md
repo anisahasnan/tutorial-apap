@@ -147,3 +147,11 @@ Pada class KamarModel, di bagian kode berikut
 4. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserServiceImpl.java?
    `UserDetailsServiceImpl.java` merupakan core interface pada security framework service dan hanya memiliki satu method yaitu `loadUserByUserName`. Class `UserDetailsServiceImpl` ini digunakan untuk mengambil informasi mengenai otentikasi dan otorisasi milik pengguna. Sedangkan, class `UserServiceImpl` berisi method atau service yang dapat digunakan oleh model user dan tidak berkaitan dengan otorisasi atau otentikasi.
 
+## Tutorial 7
+1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi dari apa yang Anda jelaskan.
+
+2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan props?
+	Props adalah variabel yang di-*passed* oleh *parent component* nya. Sedangkan, State adalah 
+3. Apa keuntungan menggunakan component (e.g. List, Item) di React? Berikan contohnya!
+4. Menurut kamu, apa saja kelebihan menggunakan React dalam pengembangan web?
+5. Menurut kamu, apa saja kekurangan menggunakan React dalam pengembangan web?
