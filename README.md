@@ -191,3 +191,30 @@ Pada class KamarModel, di bagian kode berikut
 	- **Tidak dapat digunakan pada semua browser**. Browser versi lama tidak mendukung ReactJs, dan hanya browser vers baru yang dapat menggunakan ReactJs
 	- **Hanya mencakup bagian view dari model MVC**. Sayangnya, ReactJS hanya mencakup bagian view layer dari model MVC dan untuk layer lainnya membutuhkan aplikasi lain yang dapat digunakan untuk pengembangan proyek.
 	- **Dokumentasi kurang rapi**. Dokumentasi yang diberikan oleh React tidak tertata rapi dan lengkap. Hal ini dikarenakan React merupakan teknologi yang berkembang dengan cepat sehingga banyak terjadi perubahan pada dokumentasi.
+
+## Tutorial 8
+1. Ceritakan langkah - langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian melakukan langkah - langkah tersebut?
+Pada awalnya, form untuk menambah hotel masih berisi value dari hotel sebelumnya yang sudah ditambah. Hal ini dikarenakan value dari `input` pada form tambah hotel diambil dari nilai state namaHotel, alamat, dan nomorTelepon. Sebelum mem-post informasi mengenai hotel baru ke server, informasi tersebut disimpan terlebih dahulu ke dalam state. Hal inilah yang menyebabkan ketika form tambah hotel dibuka kembali, valuenya berisi informasi mengenai hotel sebelumnya yang didapat dari state. Untuk mengatasi hal ini, saya menambahkan beberapa kode pada fungsi `handleSubmitAddHotel` untuk menset ulang nilai-nilai dari state namaHotel, alamat, dan nomorTelepon menjadi `""`. Hal ini saya lakukan agar ketika form tambah hotel dibuka kembali, value dari `input` pada form akan mengambil nilai state yang berisi `""`. Berikut adalah kode yang saya tambahkan,
+   `this.setState({
+      namaHotel: "",
+      alamat: "",
+      nomorTelepon: "",
+   });`
+
+2. Jelaskan fungsi dari async dan await!
+   - `async` berfungsi untuk mengubah sebuah fungsi menjadi asynchronous
+   - `await` berfungsi untuk menunda eksekusi dari sebuah fungsi hingga proses asynchronous selesai. `await` juga bisa digunakan berkali-kali di dalam fungsi
+
+3. Masukkan jawaban dari Screenshot yang diperintahkan di halaman 7 pada Component Lifecycle pada pertanyaan ini.
+   1. ![1](https://i.imgur.com/bxMsYRM.png)
+   2. ![2](https://i.imgur.com/0a7YYQK.png)
+   3. ![3](https://i.imgur.com/6ndOQE9.png)
+   4. ![4](https://i.imgur.com/CEqMOZb.png)
+   5. ![5](https://i.imgur.com/KaL2LLP.png)
+
+4. Jelaskan fungsi dari `componentDidMount`, `shouldComponentUpdate`, `componentDidUpdate`, `componentWillReceiveProps`, `componentWillUnmount`. Notes : Penjelasan harus mencantumkan “kapan fungsi dipanggil” dan “use case apa saja yang biasanya menggunakan lifecycle method tersebut”.
+   - `componentDidMount` merupakan tahap ketiga pada mounting phase suatu component. Mounting phase sendiri merupakan tahap ketika component baru pertama kali dibuat atau dirender ke DOM. `componentDidMount` akan dipanggil setelah component sudah di render. Pada fungsi ini, akan dilakukan proses pemanggilan ajax dan perubahan isi state. Fungsi ini akan melakukan akses dan manipulasi DOM serta operasi lain seperti request data dari API
+   - `shouldComponentUpdate` merupakan tahap kedua pada updating phase suatu component. Updating phase sendiri merupakan tahap ketika sebuah component akan di render ulang, biasanya terjadi ketika ada perubahan pada state atau props yang mengakibatkan perubahan DOM. `shouldComponentUpdate` akan dipanggil ketika terdapat perubahan pada state atau prop dari component. Fungsi ini akan menentukan apakah sebuah component akan dirender ulang atau tidak ketika terjadi perubahan. Fungsi ini akan mengembalikan nilai true untuk yang berarti me-render ulang component, dan false yang berarti tidak me-render ulang component. Tujuan utamanya adalah optimisasi performa
+   - `componentDidUpdate` merupakan tahap kelima pada updating phase suatu component. `componentDidUpdate` akan dipanggil setelah perubahan pada model data component di render. Fungsi ini memiliki kegunaan yang sama dengan `componentDidMount` yaitu manipulasi DOM dan request data. Setiap pekerjaan manual yang dilakukan di luar React ketika pembaruan terjadi harus dilakukan pada fungsi ini seperti enkapsulasi dari 3rd party UI library
+   - `componentWillReceiveProps` merupakan tahap pertama pada updating phase suatu component. `componentWillReceiveProps` ddipanggil sebelum component menerima props yang nilainya telah berubah dan perubahan tersebut belum dirender
+   - `componentWillUnmount` merupakan satu-satunya tahap pada fase unmounting suatu component. Unmounting phase sendiri merupakan fase ketika component di hapus dari DOM. `componentWillUnmount` dipanggil sebelum sebuah component dihapus dari DOM. COntoh use case yang dilakukan adalah menghapus 3rd partu listener, unsubscribe, dan lain-lain
