@@ -147,3 +147,47 @@ Pada class KamarModel, di bagian kode berikut
 4. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserServiceImpl.java?
    `UserDetailsServiceImpl.java` merupakan core interface pada security framework service dan hanya memiliki satu method yaitu `loadUserByUserName`. Class `UserDetailsServiceImpl` ini digunakan untuk mengambil informasi mengenai otentikasi dan otorisasi milik pengguna. Sedangkan, class `UserServiceImpl` berisi method atau service yang dapat digunakan oleh model user dan tidak berkaitan dengan otorisasi atau otentikasi.
 
+## Tutorial 7
+1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi dari apa yang Anda jelaskan.
+	- Pada soal 1, saya menambahkan kondisi dimana apabila sebuah item film sudah dipilih untuk masuk ke daftar favorit, maka checkbox akan ditampilkan. Checkbox ini digunakan untuk membatalkan atau menghapus item film dari daftar favorit. Sedangkan, apabila sebuah item film tidak dipilih untuk masuk ke daftar favorit, checkbox tidak akan ditampilkan karena tidak ada yang dapat dibatalkan.
+	Berikut adalah screenshot ilustrasi,
+	![Soal 1](https://i.ibb.co/KKJL9WL/soal1.png)
+
+	- Pada soal 2, saya membuat fungsi baru bernama `removeAllItem` pada App.js dan AppFunc.js. Fungsi ini bertujuan untuk men-set ulang array `favItems` menjadi array kosong kembali. Selanjutnya, saya menambahkan kondisi dimana jika sudah ada item film yang ditambahkan ke daftar favorit, maka button untuk menghapus isi daftar film favorit akan dimunculkan. Ketika button diklik, fungsi `removeAllItem` akan dipanggil.
+	Berikut adalah kode ilustrasi,
+	![Soal 2-1](https://i.ibb.co/mTVr610/soal2-1.png)
+	![Soal 2-2](https://i.ibb.co/Kb1vT8m/soal2-2.png)
+
+	- Pada soal 3, saya memisahkan fungsi untuk menambah dan menghapus item film dari daftar favorit. Fungsi `handleItemAdd` berfungsi untuk menambah item film ke daftar favorit. Fungsi ini hanya akan dipanggil ketika item film di sebelah kiri diklik. Kemudian, fungsi `handleItemRemove` berfungsi untuk menghapus item film dari daftar favorit. Fungsi ini hanya akan dipanggil ketika item di sebelah kanan diklik.
+	Berikut adalah kode ilustrasi,
+	![Soal 3-1](https://i.ibb.co/BBw9PyX/soal3-1.png)
+	![Soal 3-2](https://i.ibb.co/1vXK5pc/soal3-2.png)
+	![Soal 3-3](https://i.ibb.co/Cn3rcY7/soal3-3.png)
+	![Soal 3-4](https://i.ibb.co/4TVJ64N/soal3-4.png)
+
+	- Pada soal 4, saya menambah state baru bernama `toggle` dengan *value* awal `false`. Selanjutnya, saya membuat fungsi baru bernama `showFavorite` yang berfungsi untuk mengubah *value* dari `toggle` (false menjadi true dan sebaliknya). Selanjutnya, saya menambahkan *toggle button* pada fungsi render. *Toggle button* ini akan memanggil fungsi `showFavorite` ketika diklik. Masih pada fungsi render, saya menambahkan kondisi dimana jika `toggle` bernilai true, informasi mengenai daftar film favorit akan ditampilkan.
+	Berikut adalah kode ilustrasi,
+	![Soal 4-1](https://i.ibb.co/LN5Wj7R/soal4-1.png)
+	![Soal 4-2](https://i.ibb.co/H2fYdhL/soal4-2.png)
+	![Soal 4-3](https://i.ibb.co/3N2QZ4H/soal4-3.png)
+
+	- Pada soal 5, saya menambahkan kondisi dimana jika belum ada item film yang ditambahkan ke daftar favorit, maka tampilkan pesan bahwa belum ada film yang ditambahkan ke daftar favorit.
+	Berikut adalah kode ilustrasi,
+	![Soal 5](https://i.ibb.co/WpfgyqM/soal5.png)
+
+2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan props?
+	- **State** adalah model data yang berfungsi sebagai data utama pada sebuah component. Isi dari state hanya tersedia dan dapat digunakan oleh component tempat state tersebut di-set, serta tidak dapat diakses oleh component lain.
+	- **Props** adalah model data yang memiliki fungsi ganda. Selain untuk menyimpan data, Props juga berfungsi untuk melempat data dari satu component ke component lain apabila terjadi perubahan data pada state.
+
+3. Apa keuntungan menggunakan component (e.g. List, Item) di React? Berikan contohnya!
+	Components adalah salah satu hal yang sangat penting dalam React.js. Components sendiri merupakan sebuah konsep bagaimana cara untuk membuat setiap bagian dari UI dapat bekerja secara mandiri dan terisolasi dari bagian yang lain. Umumnya, pemisahan biasanya dilakukan pada halaman-halaman Header, Content, dan Footer. Hal ini ditujukan agar kode tidak menumpuk pada satu halaman dan dapat lebih judah untuk dimaintain apabila terdapat perubahan.
+
+4. Menurut kamu, apa saja kelebihan menggunakan React dalam pengembangan web?
+	- **Mempercepat proses rendering**. Hal ini dikarenakan adanya Virtual DOM yang disediakan oleh React. Apabila terjadi perubahan pada real DOM, virtual DOM akan ikut berubah. 
+	- **Mudah digunakan**. Mempelajari React dapat dilakukan dengan mudah karena berupa open source GUI library. Selain itu, React juga fokus pada penyelesaian tugas secara efisien.
+	- **Bersifat modular**. Alih-alih menulis file kode yang besar dan padat, dengan React, seseorang dapat menulis banyak file yang lebih kecil dan dapat digunakan kembali. Modularitas React bisa menjadi solusi yang bagus untuk masalah pemeliharaan JavaScript.
+
+5. Menurut kamu, apa saja kekurangan menggunakan React dalam pengembangan web?
+	- **Tidak dapat digunakan pada semua browser**. Browser versi lama tidak mendukung ReactJs, dan hanya browser vers baru yang dapat menggunakan ReactJs
+	- **Hanya mencakup bagian view dari model MVC**. Sayangnya, ReactJS hanya mencakup bagian view layer dari model MVC dan untuk layer lainnya membutuhkan aplikasi lain yang dapat digunakan untuk pengembangan proyek.
+	- **Dokumentasi kurang rapi**. Dokumentasi yang diberikan oleh React tidak tertata rapi dan lengkap. Hal ini dikarenakan React merupakan teknologi yang berkembang dengan cepat sehingga banyak terjadi perubahan pada dokumentasi.
